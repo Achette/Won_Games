@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/react'
-import React from 'react'
-import { renderWithTheme } from '../../utils/tests/helpers'
+import { renderWithTheme } from 'utils/tests/helpers'
 
 import Logo from './index'
 
@@ -20,6 +19,20 @@ describe('<Logo />', () => {
     renderWithTheme(<Logo color="black" />)
     expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
       color: '#030517'
+    })
+  })
+
+  it('should render a normal logo when size is default', () => {
+    renderWithTheme(<Logo />)
+    expect(<Logo />).toHaveStyle({
+      width: '11rem'
+    })
+  })
+
+  it('should render a bigger logo', () => {
+    renderWithTheme(<Logo size="large" />)
+    expect(<Logo />).toHaveStyle({
+      width: '20rem'
     })
   })
 })
